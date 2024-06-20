@@ -5,7 +5,7 @@ source ./common-script.sh
 root_script
 
 echo "Please Enter DB password:"
-read -s mysql_root_password
+read mysql_root_password
 
 dnf install mysql-server -y &>>LOGFILE
 VALIDATE $? "Installing Mysql Server"
@@ -20,7 +20,7 @@ VALIDATE $? "Starting Mysql Server"
 #VALIDATE $? "Setting up root password"
 
 #Below code will be useful for idempotent nature
-mysql -h db.daws78s.online -uroot -pExpenseApp@1 -e 'show databases:' &>>LOGFILE
+mysql -h 172.31.83.79 -uroot -pExpenseApp@1 -e 'show databases:' &>>LOGFILE
 if [ $? -ne 0 ]
 then
     mysql_secure_installation --set-root-pass ExpenseApp@1 &>>LOGFILE
