@@ -40,9 +40,9 @@ cd /app #downloading dependencies
 npm install
 VALIDATE $? "Dependencies downloading"
 
-chmod 777 /home/ec2-user/Expenses-Project/backend.service   
+chmod 777 /home/ec2-user/Expenses-Project-1/backend.service   
 
-cp /home/ec2-user/Expenses-Project/backend.service /etc/systemd/system/backend.service &>>LOGFILE
+cp sudo /home/ec2-user/Expenses-Project-1/backend.service /etc/systemd/system/backend.service &>>LOGFILE
 VALIDATE $? "Copied backedend service"
 
 cd /etc/systemd/system
@@ -59,7 +59,7 @@ VALIDATE $? "Enabling backend"
 dnf install mysql -y &>>LOGFILE
 VALIDATE $? "Installing MYSQL Client"
 
-mysql -h 172.31.17.247 -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>LOGFILE
+mysql -h 172.31.83.79 -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>LOGFILE
 VALIDATE $? "Shema Loading"
 
 systemctl restart backend &>>LOGFILE
